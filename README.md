@@ -1,14 +1,16 @@
 # RotaryQuadEncoder
 Micropython library for using rotary quadrature encoders, such as the KY-040
-https://github.com/drakoswraith/rotaryquadencoder
+
+URL https://github.com/drakoswraith/rotaryquadencoder
 
 
 # Sources
 This is essentially a straight port of Buxtronix's rotary library with the addition of Mike Teachman's counting functions
-http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
-https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
+* http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
+* https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
 
 I used the counting functions from:
+
 https://github.com/MikeTeachman/micropython-rotary
 
 I did not use/improve Teachman's port due to not implementing half steps, and not handling the missed first count - the encoder must be have a full pulse sent before it starts counting. I added the call to self.process below to take care of that.
