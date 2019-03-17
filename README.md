@@ -1,28 +1,32 @@
 # RotaryQuadEncoder
 Micropython library for using rotary quadrature encoders, such as the KY-040
-https://github.com/drakoswraith/rotaryquadencoder
+* https://github.com/drakoswraith/rotaryquadencoder
 
 
 # Sources
 This is essentially a straight port of Buxtronix's rotary library with the addition of Mike Teachman's counting functions
-http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
-https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
+* http://www.buxtronix.net/2011/10/rotary-encoders-done-properly.html
+* https://github.com/buxtronix/arduino/tree/master/libraries/Rotary
 
 I used the counting functions from:
-https://github.com/MikeTeachman/micropython-rotary
+* https://github.com/MikeTeachman/micropython-rotary
 
 I did not use/improve Teachman's port due to not implementing half steps, and not handling the missed first count - the encoder must be have a full pulse sent before it starts counting. I added the call to self.process below to take care of that.
 I had difficulty attempting to mach up the tables between the two sets of code to address these issues, and i found it simpler to port Buxtronix's code directly for consistency between c++ and micropython. So, appologies to Mike for not contributing back to his project!
 
 
 # Rotary Info:
-See http://eeshop.unl.edu/pdf/KEYES%20Rotary%20encoder%20module%20KY-040.pdf#page=3&zoom=auto,-87,659
+This article, which links to the second PDF, had a very good writeup of the various debounce methods, or state machine method as well:
+* https://www.best-microcontroller-projects.com/rotary-encoder.html
+* http://web.engr.oregonstate.edu/%7Etraylor/ece473/student_projects/ReadingEncoderSwitches.pdf
+
+More general overview:
+* http://eeshop.unl.edu/pdf/KEYES%20Rotary%20encoder%20module%20KY-040.pdf#page=3&zoom=auto,-87,659
 
 
 # Examples
-example.py shows the basic use of interrupts and getting the raw result back that you can then check for a CW or CCW movement
-
-example2.py shows letting this class handle tracking the overall count, and what is returned is the current total count value (or None if the event was not a valid increment)
+* example.py shows the basic use of interrupts and getting the raw result back that you can then check for a CW or CCW movement
+* example2.py shows letting this class handle tracking the overall count, and what is returned is the current total count value (or None if the event was not a valid increment)
 
 I didn't create a polling example.  Refer to Buxtronix's examples to see the basic method to do that
 
@@ -41,9 +45,11 @@ If you are tracking the count, it will work with one of three modes:
 
 
 # Buxtronix's Original Notes (how it works)
-Please See Buxtronix's site for any updates, etc....
+Please See Buxtronix's site for any updates, etc....  
 
+Note the logic tables are explained a bit more thuroughly in the www.best-microcontroller-projects.com article linked above
 
+----
 
  A typical mechanical rotary encoder emits a two bit gray code
  on 3 output pins. Every step in the output (often accompanied
